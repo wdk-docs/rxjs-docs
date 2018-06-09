@@ -179,4 +179,20 @@
     </url>
     
 
+    
+    <url>
+     <loc>/CODE_OF_CONDUCT/</loc>
+     <lastmod>2018-06-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/CONTRIBUTING/</loc>
+     <lastmod>2018-06-09</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
 </urlset>
