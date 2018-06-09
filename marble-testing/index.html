@@ -1,0 +1,1217 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="RXJS文档">
+      
+      
+      
+        <meta name="author" content="Nosy">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
+    
+    
+      
+        <title>编写弹珠测试 - RXJS文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#testing-rxjs-code-with-marble-diagrams" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="RXJS文档" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                RXJS文档
+              </span>
+              <span class="md-header-nav__topic">
+                编写弹珠测试
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="前言" class="md-tabs__link">
+        前言
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../ReactiveX/intro/" title="响应式" class="md-tabs__link">
+          响应式
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../tutorial/basics/" title="教程" class="md-tabs__link">
+          教程
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../observable/" title="概念" class="md-tabs__link">
+          概念
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../pipeable-operators/" title="高级" class="md-tabs__link md-tabs__link--active">
+          高级
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    RXJS文档
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="前言" class="md-nav__link">
+      前言
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      响应式
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        响应式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/intro/" title="ReactiveX" class="md-nav__link">
+      ReactiveX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Observable/" title="Observable(观察点)" class="md-nav__link">
+      Observable(观察点)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Operators/" title="Operators(观察者)" class="md-nav__link">
+      Operators(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Single/" title="Single(单)" class="md-nav__link">
+      Single(单)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/tutorials/" title="教程" class="md-nav__link">
+      教程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="简介" class="md-nav__link">
+      简介
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      教程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        教程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/basics/" title="基础" class="md-nav__link">
+      基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/applications/" title="应用" class="md-nav__link">
+      应用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observable/" title="Observable(观察点)" class="md-nav__link">
+      Observable(观察点)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observer/" title="Observer(观察者)" class="md-nav__link">
+      Observer(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../subscription/" title="Subscription(订阅)" class="md-nav__link">
+      Subscription(订阅)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../operators/" title="Operators(操作符)" class="md-nav__link">
+      Operators(操作符)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      高级
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        高级
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pipeable-operators/" title="Pipeable 操作符" class="md-nav__link">
+      Pipeable 操作符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        编写弹珠测试
+      </label>
+    
+    <a href="./" title="编写弹珠测试" class="md-nav__link md-nav__link--active">
+      编写弹珠测试
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api" title="API" class="md-nav__link">
+    API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="大理石语法" class="md-nav__link">
+    大理石语法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="时间进度合成" class="md-nav__link">
+    时间进度合成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="订阅大理石" class="md-nav__link">
+    订阅大理石
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="已知的问题" class="md-nav__link">
+    已知的问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promisesrxjsasapscheduler" title="您不能直接测试使用Promises或使用其他任何调度程序的RxJS代码（例如AsapScheduler）" class="md-nav__link">
+    您不能直接测试使用Promises或使用其他任何调度程序的RxJS代码（例如AsapScheduler）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testschedulerruncallback" title="行为与 testScheduler.run(callback)不同" class="md-nav__link">
+    行为与 testScheduler.run(callback)不同
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../internal-marble-tests/" title="大理石测试" class="md-nav__link">
+      大理石测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../operator-creation/" title="创建操作符" class="md-nav__link">
+      创建操作符
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rxmarbles/" title="弹珠图" class="md-nav__link">
+      弹珠图
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../other/" title="扩展学习" class="md-nav__link">
+      扩展学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../maintainer-guidelines/" title="维护者指南" class="md-nav__link">
+      维护者指南
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api" title="API" class="md-nav__link">
+    API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="大理石语法" class="md-nav__link">
+    大理石语法
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="时间进度合成" class="md-nav__link">
+    时间进度合成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="订阅大理石" class="md-nav__link">
+    订阅大理石
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="例子" class="md-nav__link">
+    例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="已知的问题" class="md-nav__link">
+    已知的问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#promisesrxjsasapscheduler" title="您不能直接测试使用Promises或使用其他任何调度程序的RxJS代码（例如AsapScheduler）" class="md-nav__link">
+    您不能直接测试使用Promises或使用其他任何调度程序的RxJS代码（例如AsapScheduler）
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testschedulerruncallback" title="行为与 testScheduler.run(callback)不同" class="md-nav__link">
+    行为与 testScheduler.run(callback)不同
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="testing-rxjs-code-with-marble-diagrams">Testing RxJS Code with Marble Diagrams<a class="headerlink" href="#testing-rxjs-code-with-marble-diagrams" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">IMPORTANT</p>
+<p>This guide refers to usage of marble diagrams when using the new <code>testScheduler.run(callback)</code>. Some details here do not apply to using the TestScheduler manually, without using the <code>run()</code> helper.</p>
+</div>
+<p>We can test our <em>asynchronous</em> RxJS code <em>synchronously</em> and deterministically by virtualizing time using the TestScheduler. ASCII <strong>marble diagrams</strong> provide a visual way for us to represent the behavior of an Observable. We can use them to assert that a particular Observable behaves as expected, as well as to create <a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339">hot and cold Observables</a> we can use as mocks.</p>
+<blockquote>
+<p>At this time the TestScheduler can only be used to test code that uses timers, like delay/debounceTime/etc (i.e. it uses AsyncScheduler with delays &gt; 1). If the code consumes a Promise or does scheduling with AsapScheduler/AnimationFrameScheduler/etc it cannot be reliably tested with TestScheduler, but instead should be tested more traditionally. See the <a href="#known-issues">Known Issues</a> section for more details.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">testScheduler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TestScheduler</span><span class="p">((</span><span class="nx">actual</span><span class="p">,</span> <span class="nx">expected</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// some how assert the two objects are equal</span>
+  <span class="c1">// e.g. with chai `expect(actual).deep.equal(expected)`</span>
+<span class="p">});</span>
+
+<span class="c1">// This test will actually run *synchronously*</span>
+<span class="nx">testScheduler</span><span class="p">.</span><span class="nx">run</span><span class="p">(({</span> <span class="nx">cold</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">cold</span><span class="p">(</span><span class="s1">&#39;-a-b-c--------|&#39;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+    <span class="nx">debounceTime</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">expected</span> <span class="o">=</span> <span class="s1">&#39;   ----------c---|&#39;</span><span class="p">;</span>
+  <span class="nx">expectObservable</span><span class="p">(</span><span class="nx">output</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expected</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
+<p>The callback function you provide to <code>testScheduler.run(callback)</code> is called with an object that contains the helper functions you'll use to write your tests.</p>
+<blockquote>
+<p>When the code inside this callback is being executed, any operator that uses timers/AsyncScheduler (like delay, debounceTime, etc) will <strong>automatically</strong> use the TestScheduler instead, so that we have "virtual time". You do not need to pass the TestScheduler to them, like in the past.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="nx">testScheduler</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="nx">helpers</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">cold</span><span class="p">,</span> <span class="nx">hot</span><span class="p">,</span> <span class="nx">expectObservable</span><span class="p">,</span> <span class="nx">expectSubscriptions</span><span class="p">,</span> <span class="nx">flush</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">helpers</span><span class="p">;</span>
+  <span class="c1">// use them</span>
+<span class="p">});</span>
+</pre></div>
+
+<ul>
+<li><code>hot(marbleDiagram: string, values?: object, error?: any)</code> - creates a <a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339">"hot" observable</a> (like a subject) that will behave as though it's already "running" when the test begins. An interesting difference is that <code>hot</code> marbles allow a <code>^</code> character to signal where the "zero frame" is. That is the point at which the subscription to observables being tested begins.</li>
+<li><code>cold(marbleDiagram: string, values?: object, error?: any)</code> - creates a <a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339">"cold" observable</a> whose subscription starts when the test begins.</li>
+<li><code>expectObservable(actual: Observable&lt;T&gt;).toBe(marbleDiagram: string, values?: object, error?: any)</code> - schedules an assertion for when the TestScheduler flushes.</li>
+<li><code>expectSubscriptions(actualSubscriptionLogs: SubscriptionLog[]).toBe(subscriptionMarbles: string)</code> - like <code>expectObservable</code> schedules an assertion for when the testScheduler flushes. Both <code>cold()</code> and <code>hot()</code> return an observable with a property <code>subscriptions</code> of type <code>SubscriptionLog[]</code>. Give <code>subscriptions</code> as parameter to <code>expectSubscriptions</code> to assert whether it matches the <code>subscriptionsMarbles</code> marble diagram given in <code>toBe()</code>. Subscription marble diagrams are slightly different than Observable marble diagrams. Read more below.</li>
+<li><code>flush()</code> - immediately starts virtual time. Not often used since <code>run()</code> will automatically flush for you when your callback returns, but in some cases you may wish to flush more than once or otherwise have more control.</li>
+</ul>
+<h2 id="_1">大理石语法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>In the context of TestScheduler, a marble diagram is a string containing special syntax representing events happening over virtual time. Time progresses by <em>frames</em>. The first character of any marble string always represents the <em>zero frame</em>, or the start of time. Inside of <code>testScheduler.run(callback)</code> the frameTimeFactor is set to 1, which means one frame is equal to one virtual millisecond.</p>
+<p>How many virtual milliseconds one frame represents depends on the value of <code>TestScheduler.frameTimeFactor</code>. For legacy reasons the value of <code>frameTimeFactor</code> is 1 <em>only</em> when your code inside the <code>testScheduler.run(callback)</code> callback is running. Outside of it, it's set to 10. This will likely change in a future version of RxJS so that it is always 1.</p>
+<blockquote>
+<p>IMPORTANT: This syntax guide refers to usage of marble diagrams when using the new <code>testScheduler.run(callback)</code>. The semantics of marble diagrams when using the TestScheduler manually are different, and some features like the new time progression syntax are not supported.</p>
+</blockquote>
+<ul>
+<li><code>' '</code> whitespace: horizontal whitespace is ignored, and can be used to help vertically align multiple marble diagrams.</li>
+<li><code>'-'</code> frame: 1 "frame" of virtual time passing (see above description of frames).</li>
+<li><code>[0-9]+[ms|s|m]</code> time progression: the time progression syntax lets you progress virtual time by a specific amount. It's a number, followed by a time unit of <code>ms</code> (milliseconds), <code>s</code> (seconds), or <code>m</code> (minutes) without any space between them, e.g. <code>a 10ms b</code>. See <a href="#Time-progression-syntax">Time progression syntax</a> for more details.</li>
+<li><code>'|'</code> complete: The successful completion of an observable. This is the observable producer signaling <code>complete()</code>.</li>
+<li><code>'#'</code> error: An error terminating the observable. This is the observable producer signaling <code>error()</code>.</li>
+<li><code>[a-z0-9]</code> e.g. <code>'a'</code> any alphanumeric character: Represents a value being emitted by the producer signaling <code>next()</code>.</li>
+<li><code>'()'</code> sync groupings: When multiple events need to be in the same frame synchronously, parentheses are used to group those events. You can group next'd values, a completion, or an error in this manner. The position of the initial <code>(</code> determines the time at which its values are emitted. While it can be unintuitive at first, after all the values have synchronously emitted time will progress a number of frames equal to the number of ASCII characters in the group, including the parentheses. e.g. <code>'(abc)'</code> will emit the values of a, b, and c synchronously in the same frame and then advance virtual time by 5 frames, <code>'(abc)'.length === 5</code>. This is done because it often helps you vertically align your marble diagrams, but it's a known pain point in real-world testing. <a href="#known-issues">Learn more about known issues</a>.</li>
+<li><code>'^'</code> subscription point: (hot observables only) shows the point at which the tested observables will be subscribed to the hot observable. This is the "zero frame" for that observable, every frame before the <code>^</code> will be negative. Negative time might seem pointless, but there are in fact advanced cases where this is necessary, usually involving ReplaySubjects.</li>
+</ul>
+<h3 id="_2">时间进度合成<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>The new time progression syntax takes inspiration from the CSS duration syntax. It's a number (int or float) immediately followed by a unit; ms (milliseconds), s (seconds), m (minutes). e.g. <code>100ms</code>, <code>1.4s</code>, <code>5.25m</code>.</p>
+<p>When it's not the first character of the diagram it must be padded a space before/after to disambiguate it from a series of marbles. e.g. <code>a 1ms b</code> needs the spaces because <code>a1msb</code> will be interpreted as <code>['a', '1', 'm', 's', 'b']</code> where each of these characters is a value that will be next()'d as-is.</p>
+<div class="admonition note">
+<p>You may have to subtract 1 millisecond from the time you want to progress because the alphanumeric marbles (representing an actual emitted value) <em>advance time 1 virtual frame</em> themselves already, after they emit. This can be very unintuitive and frustrating, but for now it is indeed correct.</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="s1">&#39; -a-b-c|&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">expected</span> <span class="o">=</span> <span class="s1">&#39;-- 9ms a 9ms b 9ms (c|)&#39;</span><span class="p">;</span>
+<span class="cm">/*</span>
+
+<span class="cm">// Depending on your personal preferences you could also</span>
+<span class="cm">// use frame dashes to keep vertical aligment with the input</span>
+<span class="cm">const input = &#39; -a-b-c|&#39;;</span>
+<span class="cm">const expected = &#39;------- 4ms a 9ms b 9ms (c|)&#39;;</span>
+<span class="cm">// or</span>
+<span class="cm">const expected = &#39;-----------a 9ms b 9ms (c|)&#39;;</span>
+
+<span class="cm">*/</span>
+
+<span class="kr">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">cold</span><span class="p">(</span><span class="nx">input</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">concatMap</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="nx">of</span><span class="p">(</span><span class="nx">d</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+    <span class="nx">delay</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+  <span class="p">))</span>
+<span class="p">);</span>
+
+<span class="nx">expectObservable</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="nx">expected</span><span class="p">);</span>
+</pre></div>
+
+<h3 id="_3">例子<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p><code>'-'</code> or <code>'------'</code>: Equivalent to <code>never()</code>, or an observable that never emits or completes</p>
+<p><code>|</code>: Equivalent to <code>empty()</code></p>
+<p><code>#</code>: Equivalent to <code>throwError()</code></p>
+<p><code>'--a--'</code>: An observable that waits 2 "frames", emits value <code>a</code> and then never completes.</p>
+<p><code>'--a--b--|'</code>: On frame 2 emit <code>a</code>, on frame 5 emit <code>b</code>, and on frame 8, <code>complete</code></p>
+<p><code>'--a--b--#'</code>: On frame 2 emit <code>a</code>, on frame 5 emit <code>b</code>, and on frame 8, <code>error</code></p>
+<p><code>'-a-^-b--|'</code>: In a hot observable, on frame -2 emit <code>a</code>, then on frame 2 emit <code>b</code>, and on frame 5, <code>complete</code>.</p>
+<p><code>'--(abc)-|'</code>: on frame 2 emit <code>a</code>, <code>b</code>, and <code>c</code>, then on frame 8 <code>complete</code></p>
+<p><code>'-----(a|)'</code>: on frame 5 emit <code>a</code> and <code>complete</code>.</p>
+<p><code>'a 9ms b 9s c'</code>: on frame 0 emit <code>a</code>, on frame 10 emit <code>b</code>, on frame 10,012 emit <code>c</code>, then on on frame 10,013 <code>complete</code>.</p>
+<p><code>'--a 2.5m b'</code>: on frame 2 emit <code>a</code>, on frame 150,003 emit <code>b</code> and never complete.</p>
+<h2 id="_4">订阅大理石<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>The <code>expectSubscriptions</code> helper allows you to assert that a <code>cold()</code> or <code>hot()</code> Observable you created was subscribed/unsubscribed to at the correct point in time. The subscription marble syntax is slightly different to conventional marble syntax.</p>
+<ul>
+<li><code>'-'</code> time: 1 frame time passing.</li>
+<li><code>[0-9]+[ms|s|m]</code> time progression: the time progression syntax lets you progress virtual time by a specific amount. It's a number, followed by a time unit of <code>ms</code> (milliseconds), <code>s</code> (seconds), or <code>m</code> (minutes) without any space between them, e.g. <code>a 10ms b</code>. See <a href="#Time-progression-syntax">Time progression syntax</a> for more details.</li>
+<li><code>'^'</code> subscription point: shows the point in time at which a subscription happen.</li>
+<li><code>'!'</code> unsubscription point: shows the point in time at which a subscription is unsubscribed.</li>
+</ul>
+<p>There should be <strong>at most one</strong> <code>^</code> point in a subscription marble diagram, and <strong>at most one</strong> <code>!</code> point. Other than that, the <code>-</code> character is the only one allowed in a subscription marble diagram.</p>
+<h3 id="_5">例子<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><code>'-'</code> or <code>'------'</code>: no subscription ever happened.</p>
+<p><code>'--^--'</code>: a subscription happened after 2 "frames" of time passed, and the subscription was not unsubscribed.</p>
+<p><code>'--^--!-'</code>: on frame 2 a subscription happened, and on frame 5 was unsubscribed.</p>
+<p><code>'500ms ^ 1s !'</code>: on frame 500 a subscription happened, and on frame 1,501 was unsubscribed.</p>
+<hr />
+<h2 id="_6">已知的问题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="promisesrxjsasapscheduler">您不能直接测试使用Promises或使用其他任何调度程序的RxJS代码（例如AsapScheduler）<a class="headerlink" href="#promisesrxjsasapscheduler" title="Permanent link">&para;</a></h3>
+<p>If you have RxJS code that uses any other form of async scheduling other than AsyncScheduler, e.g. Promises, AsapScheduler, etc. you can't reliably use marble diagrams <em>for that particular code</em>. This is because those other scheduling methods won't be virtualized or known to TestScheduler.</p>
+<p>The solution is to test that code in isolation, with the traditional async testing methods of your testing framework. The specifics depend on your testing framework of choice, but here's a pseudo-code example:</p>
+<div class="codehilite"><pre><span></span><span class="c1">// Some RxJS code that also consumes a Promise, so TestScheduler won&#39;t be able</span>
+<span class="c1">// to correctly virtualize and the test will always be really async</span>
+<span class="kr">const</span> <span class="nx">myAsyncCode</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">from</span><span class="p">(</span><span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">));</span>
+
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;has async code&#39;</span><span class="p">,</span> <span class="nx">done</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">myAsyncCode</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">assertEqual</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="s1">&#39;something&#39;</span><span class="p">);</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>On a related note, you also can't currently assert delays of zero, even with AsyncScheduler, e.g. <code>delay(0)</code> is like saying <code>setTimeout(work, 0)</code>. This schedules a new <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">"task" aka "macrotask"</a>, so it's async, but without an explicit passage of time.</p>
+<h4 id="testschedulerruncallback">行为与 <code>testScheduler.run(callback)</code>不同<a class="headerlink" href="#testschedulerruncallback" title="Permanent link">&para;</a></h4>
+<p>The TestScheduler has been around since v5, but was actually intended for testing RxJS itself by the maintainers, rather than for use in regular user apps. Because of this, some of the default behaviors and features of the TestScheduler didn't work well (or at all) for users. In v6 we introduced the <code>testScheduler.run(callback)</code> method which allowed us to provide new defaults and features in a non-breaking way, but it's still possible to <a href="../internal-marble-tests/">use the TestScheduler outside</a> of <code>testScheduler.run(callback)</code>. It's important to note that if you do so, there are some major differences in how it will behave.</p>
+<ul>
+<li>TestScheduler helper methods have more verbose names, like <code>testScheduler.createColdObservable()</code> instead of <code>cold()</code></li>
+<li>The testScheduler instance is NOT automatically be used by operators that uses AsyncScheduler, e.g. delay, debounceTime, etc so you have to explicitly pass it to them.</li>
+<li>There is NO support for time progression syntax e.g. <code>-a 100ms b-|</code></li>
+<li>1 frame is 10 virtual milliseconds by default. i.e. <code>TestScheduler.frameTimeFactor = 10</code></li>
+<li>Each space <code></code> equals 1 frame, same as a hyphen <code>-</code>.</li>
+<li>There is a hard maximum number of frames set at 750 i.e. <code>maxFrames = 750</code>. After 750 they are silently ignored.</li>
+<li>You must explicitly flush the scheduler</li>
+</ul>
+<p>While at this time usage of the TestScheduler outside of <code>testScheduler.run(callback)</code> has not been officially deprecated, it is discouraged because it is likely to cause confusion.</p>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../pipeable-operators/" title="Pipeable 操作符" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                Pipeable 操作符
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../internal-marble-tests/" title="大理石测试" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                大理石测试
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            版权 &copy; 2018 -  wohugb.github.io
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="http://wohugb.github.io" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/wohugb" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/wohugb" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/wohugb" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8eb9be28.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1330 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="RXJS文档">
+      
+      
+      
+        <meta name="author" content="Nosy">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
+    
+    
+      
+        <title>Operators(操作符) - RXJS文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#_1" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="RXJS文档" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                RXJS文档
+              </span>
+              <span class="md-header-nav__topic">
+                Operators(操作符)
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href=".." title="前言" class="md-tabs__link">
+        前言
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../ReactiveX/intro/" title="响应式" class="md-tabs__link">
+          响应式
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../tutorial/basics/" title="教程" class="md-tabs__link">
+          教程
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../observable/" title="概念" class="md-tabs__link md-tabs__link--active">
+          概念
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../pipeable-operators/" title="高级" class="md-tabs__link">
+          高级
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    RXJS文档
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="前言" class="md-nav__link">
+      前言
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      响应式
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        响应式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/intro/" title="ReactiveX" class="md-nav__link">
+      ReactiveX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Observable/" title="Observable(观察点)" class="md-nav__link">
+      Observable(观察点)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Operators/" title="Operators(观察者)" class="md-nav__link">
+      Operators(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Single/" title="Single(单)" class="md-nav__link">
+      Single(单)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/Scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ReactiveX/tutorials/" title="教程" class="md-nav__link">
+      教程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="简介" class="md-nav__link">
+      简介
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      教程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        教程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/basics/" title="基础" class="md-nav__link">
+      基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/applications/" title="应用" class="md-nav__link">
+      应用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observable/" title="Observable(观察点)" class="md-nav__link">
+      Observable(观察点)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observer/" title="Observer(观察者)" class="md-nav__link">
+      Observer(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../subscription/" title="Subscription(订阅)" class="md-nav__link">
+      Subscription(订阅)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        Operators(操作符)
+      </label>
+    
+    <a href="./" title="Operators(操作符)" class="md-nav__link md-nav__link--active">
+      Operators(操作符)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="什么是操作符？" class="md-nav__link">
+    什么是操作符？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="实例操作符与静态操作符" class="md-nav__link">
+    实例操作符与静态操作符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="大理石图" class="md-nav__link">
+    大理石图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="选择一个操作符" class="md-nav__link">
+    选择一个操作符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="操作符类别" class="md-nav__link">
+    操作符类别
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="创建操作符号" class="md-nav__link">
+    创建操作符号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="转化操作" class="md-nav__link">
+    转化操作
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="过滤操作符" class="md-nav__link">
+    过滤操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="组合操作符" class="md-nav__link">
+    组合操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="多播操作符" class="md-nav__link">
+    多播操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="错误处理操作符" class="md-nav__link">
+    错误处理操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="效用操作符" class="md-nav__link">
+    效用操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="条件和布尔操作符" class="md-nav__link">
+    条件和布尔操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" title="数学和集合运算符" class="md-nav__link">
+    数学和集合运算符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      高级
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        高级
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pipeable-operators/" title="Pipeable 操作符" class="md-nav__link">
+      Pipeable 操作符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../marble-testing/" title="编写弹珠测试" class="md-nav__link">
+      编写弹珠测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../internal-marble-tests/" title="大理石测试" class="md-nav__link">
+      大理石测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../operator-creation/" title="创建操作符" class="md-nav__link">
+      创建操作符
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rxmarbles/" title="弹珠图" class="md-nav__link">
+      弹珠图
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../other/" title="扩展学习" class="md-nav__link">
+      扩展学习
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../maintainer-guidelines/" title="维护者指南" class="md-nav__link">
+      维护者指南
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="什么是操作符？" class="md-nav__link">
+    什么是操作符？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="实例操作符与静态操作符" class="md-nav__link">
+    实例操作符与静态操作符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="大理石图" class="md-nav__link">
+    大理石图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="选择一个操作符" class="md-nav__link">
+    选择一个操作符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="操作符类别" class="md-nav__link">
+    操作符类别
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="创建操作符号" class="md-nav__link">
+    创建操作符号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="转化操作" class="md-nav__link">
+    转化操作
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="过滤操作符" class="md-nav__link">
+    过滤操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="组合操作符" class="md-nav__link">
+    组合操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="多播操作符" class="md-nav__link">
+    多播操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" title="错误处理操作符" class="md-nav__link">
+    错误处理操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" title="效用操作符" class="md-nav__link">
+    效用操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" title="条件和布尔操作符" class="md-nav__link">
+    条件和布尔操作符
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" title="数学和集合运算符" class="md-nav__link">
+    数学和集合运算符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="_1">操作符<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>RxJS is mostly useful for its <em>operators</em>, even though the Observable is the foundation. Operators are the essential pieces that allow complex asynchronous code to be easily composed in a declarative manner.</p>
+<h2 id="_2">什么是操作符？<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Operators are <strong>methods</strong> on the Observable type, such as <code>.map(...)</code>, <code>.filter(...)</code>, <code>.merge(...)</code>, etc. When called, they do not <em>change</em> the existing Observable instance. Instead, they return a <em>new</em> Observable, whose subscription logic is based on the first Observable.</p>
+<p><span class="informal">An Operator is a function which creates a new Observable based on the current Observable. This is a pure operation: the previous Observable stays unmodified.</span></p>
+<p>An Operator is essentially a pure function which takes one Observable as input and generates another Observable as output. Subscribing to the output Observable will also subscribe to the input Observable. In the following example, we create a custom operator function that multiplies each value received from the input Observable by 10:</p>
+<div class="codehilite"><pre><span></span><span class="kd">function</span> <span class="nx">multiplyByTen</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kd">function</span> <span class="nx">subscribe</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">input</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
+      <span class="nx">next</span><span class="o">:</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">v</span><span class="p">),</span>
+      <span class="nx">error</span><span class="o">:</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+      <span class="nx">complete</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">complete</span><span class="p">()</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">multiplyByTen</span><span class="p">(</span><span class="nx">input</span><span class="p">);</span>
+<span class="nx">output</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">x</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</pre></div>
+
+<p>Which outputs:</p>
+<div class="codehilite"><pre><span></span>10
+20
+30
+40
+</pre></div>
+
+<p>Notice that a subscribe to <code>output</code> will cause <code>input</code> Observable to be subscribed. We call this an "operator subscription chain".</p>
+<h2 id="_3">实例操作符与静态操作符<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><strong>What is an instance operator?</strong> Typically when referring to operators, we assume <em>instance</em> operators, which are methods on Observable instances. For instance, if the operator <code>multiplyByTen</code> would be an official instance operator, it would look roughly like this:</p>
+<div class="codehilite"><pre><span></span><span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">multiplyByTen</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">multiplyByTen</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kd">function</span> <span class="nx">subscribe</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">input</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
+      <span class="nx">next</span><span class="o">:</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="nx">v</span><span class="p">),</span>
+      <span class="nx">error</span><span class="o">:</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+      <span class="nx">complete</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">complete</span><span class="p">()</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><span class="informal">Instance operators are functions that use the <code>this</code> keyword to infer what is the input Observable.</span></p>
+<p>Notice how the <code>input</code> Observable is not a function argument anymore, it is assumed to be the <code>this</code> object. This is how we would use such instance operator:</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">observable</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]).</span><span class="nx">multiplyByTen</span><span class="p">();</span>
+
+<span class="nx">observable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">x</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</pre></div>
+
+<p><strong>What is a static operator?</strong> Besides instance operators, static operators are functions attached to the Observable class directly. A static operator uses no <code>this</code> keyword internally, but instead relies entirely on its arguments.</p>
+<p><span class="informal">Static operators are pure functions attached to the Observable class, and usually are used to create Observables from scratch.</span></p>
+<p>The most common type of static operators are the so-called <em>Creation Operators</em>. Instead of transforming an input Observable to an output Observable, they simply take a non-Observable argument, like a number, and <em>create</em> a new Observable.</p>
+<p>A typical example of a static creation operator would be the <code>interval</code> function. It takes a number (not an Observable) as input argument, and produces an Observable as output:</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">observable</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">interval</span><span class="p">(</span><span class="mi">1000</span> <span class="cm">/* number of milliseconds */</span><span class="p">);</span>
+</pre></div>
+
+<p>Another example of a creation operator is <code>create</code>, which we have been using extensively in previous examples. See the list of <a href="#creation-operators">all static creation operators here</a>.</p>
+<p>However, static operators may be of different nature than simply creation. Some <em>Combination Operators</em> may be static, such as <code>merge</code>, <code>combineLatest</code>, <code>concat</code>, etc. These make sense as static operators because they take <em>multiple</em> Observables as input, not just one, for instance:</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">observable1</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">interval</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">observable2</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">interval</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">merged</span> <span class="o">=</span> <span class="nx">Rx</span><span class="p">.</span><span class="nx">Observable</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">observable1</span><span class="p">,</span> <span class="nx">observable2</span><span class="p">);</span>
+</pre></div>
+
+<h2 id="_4">大理石图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>To explain how operators work, textual descriptions are often not enough. Many operators are related to time, they may for instance delay, sample, throttle, or debounce value emissions in different ways. Diagrams are often a better tool for that. <em>Marble Diagrams</em> are visual representations of how operators work, and include the input Observable(s), the operator and its parameters, and the output Observable.</p>
+<p><span class="informal">In a marble diagram, time flows to the right, and the diagram describes how values ("marbles") are emitted on the Observable execution.</span></p>
+<p>Below you can see the anatomy of a marble diagram.</p>
+<p><img src="./asset/marble-diagram-anatomy.svg"></p>
+<p>Throughout this documentation site, we extensively use marble diagrams to explain how operators work. They may be really useful in other contexts too, like on a whiteboard or even in our unit tests (as ASCII diagrams).</p>
+<h2 id="_5">选择一个操作符<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="decision-tree-widget"></div>
+
+<h2 id="_6">操作符类别<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>There are operators for different purposes, and they may be categorized as: creation, transformation, filtering, combination, multicasting, error handling, utility, etc. In the following list you will find all the operators organized in categories.</p>
+<h3 id="_7">创建操作符号<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ajax</code></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-bindCallback"><code>bindCallback</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-bindNodeCallback"><code>bindNodeCallback</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-create"><code>create</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-defer"><code>defer</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-empty"><code>empty</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-from"><code>from</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-fromEvent"><code>fromEvent</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-fromEventPattern"><code>fromEventPattern</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-fromPromise"><code>fromPromise</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-generate"><code>generate</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-interval"><code>interval</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-never"><code>never</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-of"><code>of</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-range"><code>range</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-repeat"><code>repeat</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-repeatWhen"><code>repeatWhen</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-throw"><code>throw</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-timer"><code>timer</code></a></li>
+</ul>
+<h3 id="_8">转化操作<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-buffer"><code>buffer</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-bufferCount"><code>bufferCount</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-bufferTime"><code>bufferTime</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-bufferToggle"><code>bufferToggle</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-bufferWhen"><code>bufferWhen</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-concatMap"><code>concatMap</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-concatMapTo"><code>concatMapTo</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-exhaustMap"><code>exhaustMap</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-expand"><code>expand</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-groupBy"><code>groupBy</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-map"><code>map</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-mapTo"><code>mapTo</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-mergeMap"><code>mergeMap</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-mergeMapTo"><code>mergeMapTo</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-mergeScan"><code>mergeScan</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-pairwise"><code>pairwise</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-partition"><code>partition</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-pluck"><code>pluck</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-scan"><code>scan</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-switchMap"><code>switchMap</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-switchMapTo"><code>switchMapTo</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-window"><code>window</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-windowCount"><code>windowCount</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-windowTime"><code>windowTime</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-windowToggle"><code>windowToggle</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-windowWhen"><code>windowWhen</code></a></li>
+</ul>
+<h3 id="_9">过滤操作符<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-audit"><code>audit</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-auditTime"><code>auditTime</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-debounce"><code>debounce</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-debounceTime"><code>debounceTime</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-distinct"><code>distinct</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-distinctKey"><code>distinctKey</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-distinctUntilChanged"><code>distinctUntilChanged</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-distinctUntilKeyChanged"><code>distinctUntilKeyChanged</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-elementAt"><code>elementAt</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-filter"><code>filter</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-first"><code>first</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-ignoreElements"><code>ignoreElements</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-last"><code>last</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-sample"><code>sample</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-sampleTime"><code>sampleTime</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-single"><code>single</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-skip"><code>skip</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-skipLast"><code>skipLast</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-skipUntil"><code>skipUntil</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-skipWhile"><code>skipWhile</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-take"><code>take</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-takeLast"><code>takeLast</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-takeUntil"><code>takeUntil</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-takeWhile"><code>takeWhile</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-throttle"><code>throttle</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-throttleTime"><code>throttleTime</code></a></li>
+</ul>
+<h3 id="_10">组合操作符<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-combineAll"><code>combineAll</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-combineLatest"><code>combineLatest</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-concat"><code>concat</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-concatAll"><code>concatAll</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-exhaust"><code>exhaust</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-forkJoin"><code>forkJoin</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-merge"><code>merge</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-mergeAll"><code>mergeAll</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-race"><code>race</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-startWith"><code>startWith</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-switch"><code>switch</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-withLatestFrom"><code>withLatestFrom</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#static-method-zip"><code>zip</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-zipAll"><code>zipAll</code></a></li>
+</ul>
+<h3 id="_11">多播操作符<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-multicast"><code>multicast</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-publish"><code>publish</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-publishBehavior"><code>publishBehavior</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-publishLast"><code>publishLast</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-publishReplay"><code>publishReplay</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-share"><code>share</code></a></li>
+</ul>
+<h3 id="_12">错误处理操作符<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-catch"><code>catch</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-retry"><code>retry</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-retryWhen"><code>retryWhen</code></a></li>
+</ul>
+<h3 id="_13">效用操作符<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-do"><code>do</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-delay"><code>delay</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-delayWhen"><code>delayWhen</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-dematerialize"><code>dematerialize</code></a></li>
+<li><code>finally</code></li>
+<li><code>let</code></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-materialize"><code>materialize</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-observeOn"><code>observeOn</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-subscribeOn"><code>subscribeOn</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-timeInterval"><code>timeInterval</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-timestamp"><code>timestamp</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-timeout"><code>timeout</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-timeoutWith"><code>timeoutWith</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-toArray"><code>toArray</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-toPromise"><code>toPromise</code></a></li>
+</ul>
+<h3 id="_14">条件和布尔操作符<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-defaultIfEmpty"><code>defaultIfEmpty</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-every"><code>every</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-find"><code>find</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-findIndex"><code>findIndex</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-isEmpty"><code>isEmpty</code></a></li>
+</ul>
+<h3 id="_15">数学和集合运算符<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-count"><code>count</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-max"><code>max</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-min"><code>min</code></a></li>
+<li><a href="../../class/es6/Observable.js~Observable.html#instance-method-reduce"><code>reduce</code></a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../subscription/" title="Subscription(订阅)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                Subscription(订阅)
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../subject/" title="Subject(主体)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                Subject(主体)
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            版权 &copy; 2018 -  wohugb.github.io
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="http://wohugb.github.io" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/wohugb" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/wohugb" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/wohugb" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.8eb9be28.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:".."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
