@@ -1,0 +1,1387 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="RXJS文档">
+      
+      
+      
+        <meta name="author" content="Nosy">
+      
+      
+        <meta name="lang:clipboard.copy" content="复制">
+      
+        <meta name="lang:clipboard.copied" content="已复制">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="没有找到符合条件的结果">
+      
+        <meta name="lang:search.result.one" content="找到 1 个符合条件的结果">
+      
+        <meta name="lang:search.result.other" content="# 个符合条件的结果">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.0">
+    
+    
+      
+        <title>RxJS 库 - RXJS文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.78aab2dc.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.6079476c.css">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search">
+    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    
+      <a href="#rxjs" tabindex="1" class="md-skip">
+        跳转至
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="RXJS文档" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                RXJS文档
+              </span>
+              <span class="md-header-nav__topic">
+                RxJS 库
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            键入以开始搜索
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="前言" class="md-tabs__link">
+        前言
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ReactiveX/intro/" title="响应式" class="md-tabs__link">
+          响应式
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../tutorial/basics/" title="教程" class="md-tabs__link">
+          教程
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../observable/" title="概念" class="md-tabs__link">
+          概念
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../pipeable-operators/" title="高级" class="md-tabs__link">
+          高级
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../observables/" title="angular" class="md-tabs__link md-tabs__link--active">
+          angular
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    RXJS文档
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/wohugb/rxjs-docs" title="前往 Github 仓库" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      wohugb/rxjs-docs
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="前言" class="md-nav__link">
+      前言
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      响应式
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        响应式
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/intro/" title="ReactiveX" class="md-nav__link">
+      ReactiveX
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/Observable/" title="Observable(观察体)" class="md-nav__link">
+      Observable(观察体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/Operators/" title="Operators(观察者)" class="md-nav__link">
+      Operators(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/Single/" title="Single(单)" class="md-nav__link">
+      Single(单)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/Subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/Scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ReactiveX/tutorials/" title="教程" class="md-nav__link">
+      教程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/" title="简介" class="md-nav__link">
+      简介
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../installation/" title="安装" class="md-nav__link">
+      安装
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      教程
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        教程
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/basics/" title="基础" class="md-nav__link">
+      基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tutorial/applications/" title="应用" class="md-nav__link">
+      应用
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../observable/" title="Observable(观察体)" class="md-nav__link">
+      Observable(观察体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../observer/" title="Observer(观察者)" class="md-nav__link">
+      Observer(观察者)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../subscription/" title="Subscription(订阅)" class="md-nav__link">
+      Subscription(订阅)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../operators/" title="Operators(操作符)" class="md-nav__link">
+      Operators(操作符)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../subject/" title="Subject(主体)" class="md-nav__link">
+      Subject(主体)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../scheduler/" title="Scheduler(调度程序)" class="md-nav__link">
+      Scheduler(调度程序)
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      高级
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        高级
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pipeable-operators/" title="Pipeable 操作符" class="md-nav__link">
+      Pipeable 操作符
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rxmarbles/" title="弹珠图" class="md-nav__link">
+      弹珠图
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../marble-testing/" title="编写弹珠测试" class="md-nav__link">
+      编写弹珠测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../internal-marble-tests/" title="大理石测试" class="md-nav__link">
+      大理石测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../operator-creation/" title="创建操作符" class="md-nav__link">
+      创建操作符
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      angular
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        angular
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observables/" title="观察体" class="md-nav__link">
+      观察体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="toc">
+        RxJS 库
+      </label>
+    
+    <a href="./" title="RxJS 库" class="md-nav__link md-nav__link--active">
+      RxJS 库
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="创建可观察对象的函数" class="md-nav__link">
+    创建可观察对象的函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="操作符" class="md-nav__link">
+    操作符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="常用操作符" class="md-nav__link">
+    常用操作符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="错误处理" class="md-nav__link">
+    错误处理
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="重试失败的可观察对象" class="md-nav__link">
+    重试失败的可观察对象
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="可观察对象的命名约定" class="md-nav__link">
+    可观察对象的命名约定
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../observables-in-angular/" title="Angular的观察体" class="md-nav__link">
+      Angular的观察体
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../practical-observable-usage/" title="用法实战" class="md-nav__link">
+      用法实战
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../comparing-observables/" title="与其它技术的比较" class="md-nav__link">
+      与其它技术的比较
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../maintainer-guidelines/" title="维护者指南" class="md-nav__link">
+      维护者指南
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CODE_OF_CONDUCT/" title="行为守则" class="md-nav__link">
+      行为守则
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../CONTRIBUTING/" title="感谢" class="md-nav__link">
+      感谢
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../other/" title="扩展学习" class="md-nav__link">
+      扩展学习
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="toc">目录</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="创建可观察对象的函数" class="md-nav__link">
+    创建可观察对象的函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="操作符" class="md-nav__link">
+    操作符
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="常用操作符" class="md-nav__link">
+    常用操作符
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="错误处理" class="md-nav__link">
+    错误处理
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="重试失败的可观察对象" class="md-nav__link">
+    重试失败的可观察对象
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="可观察对象的命名约定" class="md-nav__link">
+    可观察对象的命名约定
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="rxjs">RxJS 库<a class="headerlink" href="#rxjs" title="Permanent link">&para;</a></h1>
+<p>响应式编程是一种面向数据流和变更传播的异步编程范式（Wikipedia）。RxJS（响应式扩展的 JavaScript 版）是一个使用可观察对象进行响应式编程的库，它让组合异步代码和基于回调的代码变得更简单 (RxJS Docs)。</p>
+<p>RxJS 提供了一种对 Observable 类型的实现，直到 Observable 成为了 JavaScript 语言的一部分并且浏览器支持它之前，它都是必要的。这个库还提供了一些工具函数，用于创建和使用可观察对象。这些工具函数可用于：</p>
+<ul>
+<li>把现有的异步代码转换成可观察对象</li>
+<li>迭代流中的各个值</li>
+<li>把这些值映射成其它类型</li>
+<li>对流进行过滤</li>
+<li>组合多个流</li>
+</ul>
+<h2 id="_1">创建可观察对象的函数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>RxJS 提供了一些用来创建可观察对象的函数。这些函数可以简化根据某些东西创建可观察对象的过程，比如事件、定时器、承诺等等。比如：</p>
+<div class="admonition note">
+<p class="admonition-title">Create an observable from a promise</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">fromPromise</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="c1">// Create an Observable out of a promise</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">fromPromise</span><span class="p">(</span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/endpoint&#39;</span><span class="p">));</span>
+<span class="c1">// Subscribe to begin listening for async result</span>
+<span class="nx">data</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
+<span class="nx">next</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span> <span class="p">},</span>
+<span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error: &#39;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">);</span> <span class="p">},</span>
+<span class="nx">complete() {</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Completed&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+<div class="admonition note">
+<p class="admonition-title">Create an observable from a counter</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">interval</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="c1">// Create an Observable that will publish a value on an interval</span>
+<span class="kr">const</span> <span class="nx">secondsCounter</span> <span class="o">=</span> <span class="nx">interval</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="c1">// Subscribe to begin publishing values</span>
+<span class="nx">secondsCounter</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`It&#39;s been </span><span class="si">${</span><span class="nx">n</span><span class="si">}</span><span class="sb"> seconds since subscribing!`</span><span class="p">));</span>
+</pre></div>
+
+</div>
+<div class="admonition note">
+<p class="admonition-title">Create an observable from an event</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">fromEvent</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;my-element&#39;</span><span class="p">);</span>
+
+<span class="c1">// Create an Observable that will publish mouse movements</span>
+<span class="kr">const</span> <span class="nx">mouseMoves</span> <span class="o">=</span> <span class="nx">fromEvent</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="s1">&#39;mousemove&#39;</span><span class="p">);</span>
+
+<span class="c1">// Subscribe to start listening for mouse-move events</span>
+<span class="kr">const</span> <span class="nx">subscription</span> <span class="o">=</span> <span class="nx">mouseMoves</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">evt</span>: <span class="kt">MouseEvent</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Log coords of mouse movements</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Coords: </span><span class="si">${</span><span class="nx">evt</span><span class="p">.</span><span class="nx">clientX</span><span class="si">}</span><span class="sb"> X </span><span class="si">${</span><span class="nx">evt</span><span class="p">.</span><span class="nx">clientY</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+
+  <span class="c1">// When the mouse is over the upper-left of the screen,</span>
+  <span class="c1">// unsubscribe to stop listening for mouse movements</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">evt</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">&lt;</span> <span class="mi">40</span> <span class="o">&amp;&amp;</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+<div class="admonition note">
+<p class="admonition-title">Create an observable that creates an AJAX request</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ajax</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/ajax&#39;</span><span class="p">;</span>
+
+<span class="c1">// Create an Observable that will create an AJAX request</span>
+<span class="kr">const</span> <span class="nx">apiData</span> <span class="o">=</span> <span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/api/data&#39;</span><span class="p">);</span>
+<span class="c1">// Subscribe to create the request</span>
+<span class="nx">apiData</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">response</span><span class="p">));</span>
+</pre></div>
+
+</div>
+<h2 id="_2">操作符<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>操作符是基于可观察对象构建的一些对集合进行复杂操作的函数。RxJS 定义了一些操作符，比如 map()、filter()、concat() 和 flatMap()。</p>
+<p>操作符接受一些配置项，然后返回一个以来源可观察对象为参数的函数。当执行这个返回的函数时，这个操作符会观察来源可观察对象中发出的值，转换它们，并返回由转换后的值组成的新的可观察对象。下面是一个简单的例子：</p>
+<div class="admonition note">
+<p class="admonition-title">Map operator</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">nums</span> <span class="o">=</span> <span class="nx">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">squareValues</span> <span class="o">=</span> <span class="nx">map</span><span class="p">((</span><span class="nx">val</span>: <span class="kt">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">val</span> <span class="o">*</span> <span class="nx">val</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">squaredNums</span> <span class="o">=</span> <span class="nx">squareValues</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span>
+
+<span class="nx">squaredNums</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+
+<span class="c1">// Logs</span>
+<span class="c1">// 1</span>
+<span class="c1">// 4</span>
+<span class="c1">// 9</span>
+</pre></div>
+
+</div>
+<p>你可以使用管道来把这些操作符链接起来。管道让你可以把多个由操作符返回的函数组合成一个。pipe() 函数以你要组合的这些函数作为参数，并且返回一个新的函数，当执行这个新函数时，就会顺序执行那些被组合进去的函数。</p>
+<p>应用于某个可观察对象上的一组操作符就像一个菜谱 —— 也就是说，对你感兴趣的这些值进行处理的一组操作步骤。这个菜谱本身不会做任何事。你需要调用 subscribe() 来通过这个菜谱生成一个结果。</p>
+<p>例子如下：</p>
+<div class="admonition note">
+<p class="admonition-title">Standalone pipe function</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">filter</span><span class="p">,</span> <span class="nx">map</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">nums</span> <span class="o">=</span> <span class="nx">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+
+<span class="c1">// Create a function that accepts an Observable.</span>
+<span class="kr">const</span> <span class="nx">squareOddVals</span> <span class="o">=</span> <span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">),</span>
+  <span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">n</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// Create an Observable that will run the filter and map functions</span>
+<span class="kr">const</span> <span class="nx">squareOdd</span> <span class="o">=</span> <span class="nx">squareOddVals</span><span class="p">(</span><span class="nx">nums</span><span class="p">);</span>
+
+<span class="c1">// Suscribe to run the combined functions</span>
+<span class="nx">squareOdd</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</pre></div>
+
+</div>
+<p>pipe() 函数也同时是 RxJS 的 Observable 上的一个方法，所以你可以用下列简写形式来达到同样的效果：</p>
+<div class="admonition note">
+<p class="admonition-title">Observable.pipe function</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">filter</span><span class="p">,</span> <span class="nx">map</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">squareOdd</span> <span class="o">=</span> <span class="nx">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+    <span class="nx">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">map</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">*</span> <span class="nx">n</span><span class="p">)</span>
+  <span class="p">);</span>
+
+<span class="c1">// Subscribe to get values</span>
+<span class="nx">squareOdd</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">x</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+</pre></div>
+
+</div>
+<h3 id="_3">常用操作符<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>RxJS 提供了很多操作符（超过 150 个），不过只有少数是常用的。 下面是一个常用操作符的列表，要查看用法范例，参见 RxJS 文档中的 RxJS 5 操作符范例。</p>
+<blockquote>
+<p>注意，对于 Angular 应用来说，我们提倡使用管道来组合操作符，而不是使用链式写法。链式写法仍然在很多 RxJS 中使用着。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>from , fromPromise , fromEvent , of</td>
+</tr>
+<tr>
+<td>组合</td>
+<td>combineLatest , concat , merge , startWith , withLatestFrom , zip</td>
+</tr>
+<tr>
+<td>过滤</td>
+<td>debounceTime , distinctUntilChanged , filter , take , takeUntil</td>
+</tr>
+<tr>
+<td>转换</td>
+<td>bufferTime , concatMap , map , mergeMap , scan , switchMap</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>tap</td>
+</tr>
+<tr>
+<td>多播</td>
+<td>share</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">错误处理<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>除了可以在订阅时提供 error() 处理器外，RxJS 还提供了 <code>catchError</code> 操作符，它允许你在管道中处理已知错误。</p>
+<p>假设你有一个可观察对象，它发起 API 请求，然后对服务器返回的响应进行映射。如果服务器返回了错误或值不存在，就会生成一个错误。如果你捕获这个错误并提供了一个默认值，流就会继续处理这些值，而不会报错。</p>
+<p>下面是使用 <code>catchError</code> 操作符实现这种效果的例子：</p>
+<div class="admonition note">
+<p class="admonition-title">catchError operator</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ajax</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/ajax&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">catchError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+<span class="c1">// Return &quot;response&quot; from the API. If an error happens,</span>
+<span class="c1">// return an empty array.</span>
+<span class="kr">const</span> <span class="nx">apiData</span> <span class="o">=</span> <span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/api/data&#39;</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">map</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Value expected!&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">response</span><span class="p">;</span>
+  <span class="p">}),</span>
+  <span class="nx">catchError</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">of</span><span class="p">([]))</span>
+<span class="p">);</span>
+
+<span class="nx">apiData</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
+  <span class="nx">next</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;data: &#39;</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span> <span class="p">},</span>
+  <span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;errors already caught... will not run&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+<h3 id="_5">重试失败的可观察对象<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><code>catchError</code> 提供了一种简单的方式进行恢复，而 retry 操作符让你可以尝试失败的请求。</p>
+<p>可以在 <code>catchError</code> 之前使用 retry 操作符。它会订阅到原始的来源可观察对象，它可以重新运行导致结果出错的动作序列。如果其中包含 HTTP 请求，它就会重新发起那个 HTTP 请求。</p>
+<p>下列代码为前面的例子加上了捕获错误前重发请求的逻辑：</p>
+<div class="admonition note">
+<p class="admonition-title">retry operator</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">ajax</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/ajax&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">retry</span><span class="p">,</span> <span class="nx">catchError</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">apiData</span> <span class="o">=</span> <span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/api/data&#39;</span><span class="p">).</span><span class="nx">pipe</span><span class="p">(</span>
+  <span class="nx">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="c1">// Retry up to 3 times before failing</span>
+  <span class="nx">map</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Value expected!&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">response</span><span class="p">;</span>
+  <span class="p">}),</span>
+  <span class="nx">catchError</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="nx">of</span><span class="p">([]))</span>
+<span class="p">);</span>
+
+<span class="nx">apiData</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">({</span>
+  <span class="nx">next</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;data: &#39;</span><span class="p">,</span> <span class="nx">x</span><span class="p">);</span> <span class="p">},</span>
+  <span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;errors already caught... will not run&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+</div>
+<blockquote>
+<p>不要重试登录认证请求，这些请求只应该由用户操作触发。我们肯定不会希望自动重复发送登录请求导致用户的账号被锁定。</p>
+</blockquote>
+<h2 id="_6">可观察对象的命名约定<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>由于 Angular 的应用几乎都是用 TypeScript 写的，你通常会希望知道某个变量是否可观察对象。虽然 Angular 框架并没有针对可观察对象的强制性命名约定，不过你经常会看到可观察对象的名字以“$”符号结尾。</p>
+<p>这在快速浏览代码并查找可观察对象值时会非常有用。同样的，如果你希望用某个属性来存储来自可观察对象的最近一个值，它的命名惯例是与可观察对象同名，但不带“$”后缀。</p>
+<p>比如：</p>
+<div class="admonition note">
+<p class="admonition-title">Naming observables</p>
+<div class="codehilite"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Observable</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+  <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;app-stopwatch&#39;</span><span class="p">,</span>
+  <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;./stopwatch.component.html&#39;</span>
+<span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">StopwatchComponent</span> <span class="p">{</span>
+
+  <span class="nx">stopwatchValue</span>: <span class="kt">number</span><span class="p">;</span>
+  <span class="nx">stopwatchValue$</span>: <span class="kt">Observable</span><span class="o">&lt;</span><span class="kt">number</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="nx">start() {</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stopwatchValue$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">num</span> <span class="o">=&gt;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopwatchValue</span> <span class="o">=</span> <span class="nx">num</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+                
+                  
+                
+              
+              
+                
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../observables/" title="观察体" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  后退
+                </span>
+                观察体
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../observables-in-angular/" title="Angular的观察体" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  前进
+                </span>
+                Angular的观察体
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            版权 &copy; 2018 -  wohugb.github.io
+          </div>
+        
+        powered by
+        <a href="http://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+      <a href="http://wohugb.github.io" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/wohugb" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/wohugb" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/wohugb" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.8eb9be28.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"0.17.3",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
